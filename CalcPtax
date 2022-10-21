@@ -1,0 +1,103 @@
+# oportunidade de aprendizado com biblioteca Tkinter e facilitar a vida dos companheiros no trabalho
+# código para facilitar calculo de preço usado em vendas de determinados produtos. 
+# funciona bem mas precisa ser lapidado. Não aceita erros humanos, como str onde se espera int ou floats, divisão por 0 e possivelmente outros.
+
+from tkinter import *
+from tkinter import ttk
+import tkinter as tk
+
+# ------- palheta de cores ------------
+co0 = "#606060"  # CINZA
+co1 = "#feffff"  # BRANCO
+co2 = "#3fb5a5"  # VERDE
+co3 = "#000000"  # PRETO
+co4 = "#ED1C24"  # VERMELHO
+
+# ----------- INICIALIZAÇÃO DE JANELA -------------------
+window = Tk()
+window.title("calc ptax")
+window.geometry('310x340')
+window.configure(background=co1)
+window.resizable(width=False, height=False)
+
+# ----------- DIVISÃO DA JANELA -------------------
+frame_up = Frame(window, width=310, height=50, bg=co1, relief='flat')
+frame_up.grid(row=0, column=0, pady=1, padx=0, sticky=NSEW)
+
+frame_down = Frame(window, width=310, height=280, bg=co1, relief='flat')
+frame_down.grid(row=1, column=0, pady=1, padx=0, sticky=NSEW)
+
+# ----------- CONFIG DE FRAME DE CIMA -------------------
+label_title = Label(frame_up, text='Calculadora PTAX', anchor=NE, font=('Arial 18'), bg=co1, fg=co3)
+label_title.place(x=5, y=5)
+lbl_line = Label(frame_up, text='', width=275, anchor=NW, font=('Arial 1'), bg=co2, fg=co2)
+lbl_line.place(x=10, y=40)
+
+# ----------- CONFIG DE FRAME DE BAIXO ( FORMULARIO ) -------------------
+lbl_lote = Label(frame_down, text='Número do Lote:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_lote.place(x=10, y=5)
+edt_lote = Entry(frame_down, width=20, justify='left', font=("", 10), highlightthickness=1, relief='solid')
+edt_lote.place(x=120, y=5)
+
+lbl_desagio = Label(frame_down, text='Pontos desagio:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_desagio.place(x=10, y=35)
+edt_desagio = Entry(frame_down, width=20, justify='left', font=("", 10), highlightthickness=1, relief='solid')
+edt_desagio.place(x=120, y=35)
+
+lbl_contrato = Label(frame_down, text='valor contrato:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_contrato.place(x=10, y=65)
+edt_contrato = Entry(frame_down, width=20, justify='left', font=("", 10), highlightthickness=1, relief='solid')
+edt_contrato.place(x=120, y=65)
+
+lbl_ptax = Label(frame_down, text='valor PTAX:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_ptax.place(x=10, y=95)
+edt_ptax = Entry(frame_down, width=20, justify='left', font=("", 10), highlightthickness=1, relief='solid')
+edt_ptax.place(x=120, y=95)
+
+lbl_ICMS = Label(frame_down, text='Possui ICMS:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_ICMS.place(x=10, y=125)
+cb_ICMS = ttk.Combobox(frame_down, values=["Sim", "Não"], width=20, justify='left', state='readonly')
+cb_ICMS.place(x=120, y=125)
+
+lbl_result = Label(frame_down, text='Valor final:', anchor=NE, font=('Arial 10'), bg=co1, fg=co3)
+lbl_result.place(x=10, y=155)
+edt_result = Entry(frame_down, width=20, justify='left', font=("", 10), highlightthickness=1, relief='solid')
+edt_result.place(x=120, y=155)
+
+
+# ----------- Funções dos butões -------------------
+def calcular():
+    lote = int(edt_lote.get())
+    valor_ctr = float(edt_contrato.get())
+    dsg_ag = float(edt_desagio.get())
+    ptax_med = float(edt_ptax.get())
+    optinal = cb_ICMS.get()
+    dsg_final = dsg_ag / 10000
+    ctr_final = valor_ctr - (dsg_final * -1)
+    valor_final = ctr_final * 2.2046 * ptax_med
+
+    if optinal == 'Sim':
+        print(str(valor_final / 0.88))
+        edt_result.insert(0, 'O valor do lote ' + str(lote) + ' com ICMS é: ' + str(valor_final / 0.88))
+    if optinal == 'Não':
+        print(str(valor_final))
+        edt_result.insert(0, 'O valor do lote ' + str(lote) + ' sem ICMS é: ' + str(valor_final))
+
+
+def limpar_formulario():
+    edt_lote.delete(0, END)
+    edt_contrato.delete(0, END)
+    edt_desagio.delete(0, END)
+    edt_ptax.delete(0, END)
+    edt_result.delete(0, END)
+
+
+# ----------- Butões finais -------------------
+btn_calc = tk.Button(frame_down, text='Calcular', width=40, bg=co2, fg=co1, command=calcular)
+btn_calc.place(x=10, y=220)
+
+btn_clear = tk.Button(frame_down, text='Limpar', width=40, bg=co2, fg=co1, command=limpar_formulario)
+btn_clear.place(x=10, y=250)
+
+# ----------- CICLO PRINCIPAL --------------------
+window.mainloop()
