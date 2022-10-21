@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @WubbalubbaC
-- 👀 I’m interested in python, mysql, robots, automation and make life easier
-- 🌱 I’m currently learning some python libs like pandas, opencv and having fun with arduino.
+- 👀 I’m interested in python, Datascience, robots, automation and make life easier
+- 🌱 I’m currently learning some python libs like pandas, opencv, tkinter and having fun with arduino.
 - 💞️ I’m looking to collaborate on automation, data bases and logic
    <!---
 
