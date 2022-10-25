@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @WubbalubbaC
 - 👀 I’m interested in python, Datascience, robots, automation and make life easier
-- 🌱 I’m currently learning some python libs like pandas, opencv, tkinter and having fun with arduino.
-- 💞️ I’m looking to collaborate on automation, data bases and logic
+- 🌱 Currently learning some python libs like pandas, opencv, tkinter and having fun with arduino.
+- 💞️ And looking to collaborate on automation, data bases and logic
    <!---
 
 WubbalubbaC/WubbalubbaC is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
